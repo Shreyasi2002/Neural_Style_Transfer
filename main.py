@@ -6,6 +6,13 @@ import matplotlib.pyplot as plt
 import neural_style_transfer
 
 st.markdown("## Neural Style Transfer - Blend Two Images Perfectly!!")
+st.markdown('**Neural style transfer** is an optimization technique used to take two images—a content image and a style reference image (such as an artwork by a famous painter)—and blend them together so the output image looks like the content image, but “painted” in the style of the style reference image.')
+c1, c2, c3 = st.columns([2, 0.25, 1.5])
+with c1:
+  st.image('./Images/Frontend.png', caption='Content and Style Images')
+
+with c3:
+  st.image('./Images/Output.png', caption='Output Image')
 
 
 with st.container():
@@ -42,13 +49,14 @@ with st.container():
 # Percentage of blending
 percent = st.slider('How much blending do you want?', 0, 100, 25)
 
-clicked = st.button('Blend')
+if content_image is not None and style_image is not None:
+  clicked = st.button('Blend')
 
-if clicked:
-  results = neural_style_transfer.stylize(content_image, style_image, percent)
-  st.markdown('#### Output Image')
-  figure, ax = plt.subplots(figsize=(20,10))
-  ax.axis('off')
-  print("i m here")
-  ax.imshow(results)
-  st.pyplot(figure)
+  if clicked:
+    results = neural_style_transfer.stylize(content_image, style_image, percent)
+    st.markdown('#### Output Image')
+    figure, ax = plt.subplots(figsize=(20,10))
+    ax.axis('off')
+    print("i m here")
+    ax.imshow(results)
+    st.pyplot(figure)
