@@ -130,12 +130,7 @@ def stylize(content_image, style_image, percent):
     optimizer.zero_grad()
     t_loss.backward()
     optimizer.step()
-    print(i)
     if i == percent * 10:
       results = deprocess(target.detach())
       break
-
-  print("i am outside")
-  print(results.shape)
-  print(results)
   return results
