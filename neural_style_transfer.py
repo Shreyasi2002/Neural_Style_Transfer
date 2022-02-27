@@ -88,11 +88,11 @@ def stylize(content_image, style_image, percent):
       loss = torch.mean((target_conv4_2 - content_conv4_2) ** 2)
       return loss
 
-  style_weights = {'conv1_1' : 1.0, 
-                  'conv2_1' : 0.75, 
-                  'conv3_1' : 0.2, 
-                  'conv4_1' : 0.2, 
-                  'conv5_1' : 0.2}
+  style_weights = {'conv1_1' : 0.1, 
+                  'conv2_1' : 0.075, 
+                  'conv3_1' : 0.050, 
+                  'conv4_1' : 0.025, 
+                  'conv5_1' : 0.02}
 
   def style_loss(style_weights, target_features, style_grams):
     loss = 0
@@ -115,7 +115,7 @@ def stylize(content_image, style_image, percent):
   alpha = 1
   beta = 1e4
 
-  epochs = 1001
+  epochs = 501
 
   def total_loss(c_loss, s_loss, alpha, beta):
     loss = alpha * c_loss + beta * s_loss
@@ -131,7 +131,7 @@ def stylize(content_image, style_image, percent):
     t_loss.backward()
     optimizer.step()
     print(i)
-    if i == percent * 10:
+    if i == percent * 5:
       results = deprocess(target.detach())
       break
 
