@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 import os
+import matplotlib.pyplot as plt
 
 import neural_style_transfer
 
@@ -37,6 +38,10 @@ percent = st.slider('How much blending do you want?', 0, 100, 25)
 clicked = st.button('Blend')
 
 if clicked:
-  figure = neural_style_transfer.stylize(content_image, style_image, percent)
+  results = neural_style_transfer.stylize(content_image, style_image, percent)
   st.write('### Output Image')
+  figure, ax = plt.subplots(figsize=(20,10))
+  ax.axis('off')
+  print("i m here")
+  ax.imshow(results)
   st.pyplot(figure)

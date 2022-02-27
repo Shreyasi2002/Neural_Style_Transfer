@@ -4,7 +4,6 @@ from torch import optim
 from PIL import Image
 from torchvision import transforms as T
 import numpy as np
-import matplotlib.pyplot as plt
 import streamlit as st
 
 @st.cache
@@ -116,7 +115,7 @@ def stylize(content_image, style_image, percent):
   alpha = 1
   beta = 1e5
 
-  epochs = 1001
+  epochs = 2001
 
   def total_loss(c_loss, s_loss, alpha, beta):
     loss = alpha * c_loss + beta * s_loss
@@ -132,11 +131,11 @@ def stylize(content_image, style_image, percent):
     t_loss.backward()
     optimizer.step()
     print(i)
-    if i == percent * 10:
+    if i == percent * 20:
       results = deprocess(target.detach())
       break
 
-  fig, ax = plt.subplots(figsize=(20,10))
-  ax.axis('off')
-  ax.imshow(results)
-  return fig
+  print("i am outside")
+  print(results.shape)
+  print(results)
+  return results
