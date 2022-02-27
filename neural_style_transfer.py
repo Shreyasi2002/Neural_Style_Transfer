@@ -113,9 +113,9 @@ def stylize(content_image, style_image, percent):
 
   optimizer = optim.Adam([target], lr = 0.003)
   alpha = 1
-  beta = 1e5
+  beta = 1e4
 
-  epochs = 2001
+  epochs = 1001
 
   def total_loss(c_loss, s_loss, alpha, beta):
     loss = alpha * c_loss + beta * s_loss
@@ -131,7 +131,7 @@ def stylize(content_image, style_image, percent):
     t_loss.backward()
     optimizer.step()
     print(i)
-    if i == percent * 20:
+    if i == percent * 10:
       results = deprocess(target.detach())
       break
 
