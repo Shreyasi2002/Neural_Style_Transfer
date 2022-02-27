@@ -4,4 +4,3 @@ streamlit
 matplotlib
 pillow
 numpy
-os
