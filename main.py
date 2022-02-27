@@ -58,6 +58,5 @@ if content_image is not None and style_image is not None:
     st.markdown('#### Output Image')
     figure, ax = plt.subplots(figsize=(20,10))
     ax.axis('off')
-    print("i m here")
     ax.imshow(results)
     st.pyplot(figure)
