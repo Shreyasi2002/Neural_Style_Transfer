@@ -14,7 +14,7 @@ with c1:
 with c3:
   st.image('./Images/Output.png', caption='Output Image')
 
-
+st.header(' ')
 with st.container():
   col1, col3, col2 = st.columns([3, 0.25, 3])
 
@@ -49,6 +49,7 @@ with st.container():
 # Percentage of blending
 percent = st.slider('How much blending do you want?', 0, 100, 25)
 
+st.info('Please note that depending on the size of the image and blending percentage, the process may take several minutes...')
 if content_image is not None and style_image is not None:
   clicked = st.button('Blend')
 
