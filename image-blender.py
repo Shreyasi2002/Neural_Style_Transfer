@@ -1,9 +1,8 @@
 import streamlit as st
-from PIL import Image
 import os
 import matplotlib.pyplot as plt
 
-import neural_style_transfer
+from neural_style_transfer import stylize
 
 st.markdown("## Neural Style Transfer - Blend Two Images Perfectly!!")
 st.markdown('**Neural style transfer** is an optimization technique used to take two images—a content image and a style reference image (such as an artwork by a famous painter)—and blend them together so the output image looks like the content image, but “painted” in the style of the style reference image.')
@@ -54,7 +53,7 @@ if content_image is not None and style_image is not None:
   clicked = st.button('Blend')
 
   if clicked:
-    results = neural_style_transfer.stylize(content_image, style_image, percent)
+    results = stylize(content_image, style_image, percent)
     st.markdown('#### Output Image')
     figure, ax = plt.subplots(figsize=(20,10))
     ax.axis('off')
